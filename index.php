@@ -1,3 +1,11 @@
+<?php
+	if(isset($_GET['error']) && $_GET['error'] == "injection")
+	{
+		echo "aqui não amigo";
+		die();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
