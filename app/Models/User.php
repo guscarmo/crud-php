@@ -14,9 +14,18 @@ class User
     /*
      * Trazer um único usuário especifíco
      */
-    public function getUser()
+    public function getUser(string $value, string $field = "id" ): array
     {
+        $query = $this->pdo->prepare(
+          "SELECT * FROM users WHERE $field = :value"
+        );
 
+//        $query->bindParam(':field', $field, PDO::PARAM_STR);
+        $query->bindParam(':value', $value, PDO::PARAM_STR);
+        $query->execute();
+
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user : [];
     }
 
     /*

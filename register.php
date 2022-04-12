@@ -20,6 +20,15 @@
 						<div class="card-body">
 							<h4 class="card-title">Register</h4>
 							<form method="POST" action="app/Controller/userController.php">
+
+                                <div class="alert alert-danger">
+                                    <?php
+                                    if(isset($_GET['error']) && $_GET['error'] === 'validation') {
+                                        echo "Erro no registro";
+                                    }
+                                    ?>
+                                </div>
+
 								<div class="form-group">
 									<label for="name">Name</label>
 									<input id="name" type="text" class="form-control" name="name" required autofocus>
@@ -44,6 +53,14 @@
 									</div>
 								</div>
 
+								<div class="form-group">
+									<label for="password">Confirm Password</label>
+									<input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required data-eye>
+									<div class="invalid-feedback">
+										Confirm password is required
+									</div>
+								</div>
+
 								<input type="hidden" name="userController" value="register">
 
 								<div class="form-group">
@@ -61,8 +78,9 @@
 										Register
 									</button>
 								</div>
+
 								<div class="mt-4 text-center">
-									Already have an account? <a href="index.html">Login</a>
+									Already have an account? <a href="index.php">Login</a>
 								</div>
 							</form>
 						</div>

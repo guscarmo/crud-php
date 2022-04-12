@@ -1,7 +1,7 @@
 <?php
 	if(isset($_GET['error']) && $_GET['error'] == "injection")
 	{
-		echo "aqui não amigo";
+		echo "<marquee>aqui não amigo</marquee>";
 		die();
 	}
 ?>
@@ -62,7 +62,7 @@
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									Don't have an account? <a href="register.html">Create One</a>
+									Don't have an account? <a href="register.php">Create One</a>
 								</div>
 							</form>
 						</div>
