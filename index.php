@@ -28,7 +28,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form method="POST" action="./app/Controller/userController.php" class="my-login-validation" novalidate="">
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -61,6 +61,9 @@
 										Login
 									</button>
 								</div>
+
+                                <input type="hidden" name="userController" value="login">
+
 								<div class="mt-4 text-center">
 									Don't have an account? <a href="register.php">Create One</a>
 								</div>

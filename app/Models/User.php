@@ -20,7 +20,6 @@ class User
           "SELECT * FROM users WHERE $field = :value"
         );
 
-//        $query->bindParam(':field', $field, PDO::PARAM_STR);
         $query->bindParam(':value', $value, PDO::PARAM_STR);
         $query->execute();
 
@@ -33,7 +32,14 @@ class User
      */
     public function  getMe()
     {
+        $query = $this->pdo->prepare(
+            "SELECT * FROM users WHERE id = :value"
+        );
 
+        $query->bindParam(':value', $_SESSION['id'], PDO::PARAM_STR);
+        $query->execute();
+
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
 
     /*
@@ -51,10 +57,16 @@ class User
             $query->bindParam(':name', $data['name'], PDO::PARAM_STR);
             $query->bindParam(':email', $data['email'], PDO::PARAM_STR);
             $query->bindParam(':password', $data['password'], PDO::PARAM_STR);
+
             return $query->execute();
         }catch (PDOException $exception) {
             echo "deu ruim";
             die();
         }
+    }
+
+    public function putUseR()
+    {
+
     }
 }

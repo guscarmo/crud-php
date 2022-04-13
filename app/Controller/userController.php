@@ -29,6 +29,15 @@ switch ($_POST['userController'])
         echo 'deu bom';
         break;
 
+    case "login":
+        $validate = validateLogin($model, $_POST);
+        if (count($validate)) {
+            header('location:/?error=validation&content=' . json_encode($validate));
+            die();
+        }
+        header('location:/logado.php');
+        break;
+
     default:
         throw new Exception("aqui nao 2");
 }
@@ -43,6 +52,26 @@ function validateRegister(User $user, array $data)
     /*if($data['password'] !== $data['nome q for criado password_confirmation']) {
         $error[] = 2;
     }*/
+
+    return $errors;
+}
+
+function validateLogin(User $user, array $data)
+{
+    $errors = [];
+    var_dump($data);
+    $user = $user->getUser($data['email'], 'email');
+    if(!$user){
+        $errors[] = 1;
+    }
+
+    if(password_verify($data['password'], $user['password'])){
+        session_start();
+        $_SESSION['online'] = true;
+        $_SESSION['id'] = $user['id'];
+    } else {
+        $errors[] = 2;
+    }
 
     return $errors;
 }
